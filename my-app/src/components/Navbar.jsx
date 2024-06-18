@@ -15,6 +15,9 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { getAuth, signOut } from "firebase/auth";
+
+
 
 const Navbar = () => {
 
@@ -45,6 +48,12 @@ const Navbar = () => {
     const signOut = () => {
         localStorage.setItem('emailPrefix', "");
         setEmailPrefix('');
+        const auth = getAuth();
+        signOut(auth).then(() => {
+            // Sign-out successful.
+        }).catch((error) => {
+            // An error happened.
+        });
     };
 
 
@@ -140,9 +149,9 @@ const Navbar = () => {
                     </Link>
                     <Link to="/payment">
 
-                <Typography>
-                    {savedPaymentAmount} $
-                </Typography>
+                        <Typography>
+                            {savedPaymentAmount} $
+                        </Typography>
                     </Link>
                 </Toolbar>
             </AppBar>

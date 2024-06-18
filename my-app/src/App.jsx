@@ -7,9 +7,10 @@ import { addCourse } from './Redux/slices';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Cart from './scene/Cart';
 import Payment from './scene/Payment';
-import { app } from './firebaseConfig'
+import { app , db} from './firebaseConfig'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-
+import { collection, addDoc } from 'firebase/firestore';
+// const collectionRef = collection(db, 'users')
 
 import SignUpForm from './scene/SignUpForm';
 function App() {
@@ -17,6 +18,7 @@ function App() {
   const courses = useSelector(state => state.courses.courses);
   const num = useSelector(state => state.courses.num);
 
+  const collectionRef = collection(db, 'users')
 
   return (
     <>
