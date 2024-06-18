@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { auth, db } from '../firebaseConfig'; // Import the auth instance correctly
+import { auth, db } from '../firebaseConfig'; // Import the auth and db instances correctly
 import Navbar from '../components/Navbar';
 import { collection, addDoc } from 'firebase/firestore';
 
 const SignUpForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate(); // Get the navigate instance
+    const navigate = useNavigate();
     const [error, setError] = useState('');
-    const usersCollectionRef = collection(db, 'users'); // Reference to the 'users' collection in Firestore
+    const usersCollectionRef = collection(db, 'users');
+    const coursesCollectionRef = collection(db, 'courses'); // Reference to 'courses' collection
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -27,8 +28,19 @@ const SignUpForm = () => {
             // Save user data to Firestore
             await addDoc(usersCollectionRef, {
                 email: email,
-                password: password,
                 uid: userCredential.user.uid // Include the user's UID from authentication
+            });
+
+            // Save courses data to Firestore (for example)
+            const coursesData = [
+                { name: 'Course 1', className: 'class1', url: '/course1' },
+                { name: 'Course 2', className: 'class2', url: '/course2' },
+                // Add more courses as needed
+            ];
+
+            // Loop through coursesData and add each course to Firestore
+            coursesData.forEach(async (course) => {
+                await addDoc(coursesCollectionRef, course);
             });
 
             // Redirect to home page
@@ -44,10 +56,6 @@ const SignUpForm = () => {
         const provider = new GoogleAuthProvider();
         try {
             const result = await signInWithPopup(auth, provider);
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
-            // The signed-in user info.
             const user = result.user;
 
             const email = user.email;
@@ -55,12 +63,25 @@ const SignUpForm = () => {
             const emailPrefix = email.split('@')[0];
             // Save email to local storage
             localStorage.setItem('emailPrefix', emailPrefix);
+
             // Save user data to Firestore
             await addDoc(usersCollectionRef, {
                 email: email,
-                // password: password,
                 uid: user.uid // Include the user's UID from authentication
             });
+
+            // Save courses data to Firestore (for example)
+            const coursesData = [
+                { name: 'Course 1', className: 'class1', url: '/course1' },
+                { name: 'Course 2', className: 'class2', url: '/course2' },
+                // Add more courses as needed
+            ];
+
+            // Loop through coursesData and add each course to Firestore
+            coursesData.forEach(async (course) => {
+                await addDoc(coursesCollectionRef, course);
+            });
+
             // Redirect to home page
             navigate('/');
         } catch (error) {

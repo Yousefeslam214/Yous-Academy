@@ -11,20 +11,21 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { getAuth, signOut } from "firebase/auth";
-
+import { coursesReducer } from '../Redux/slices';
 
 
 const Navbar = () => {
-
+    const dispatch = useDispatch()
     const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [emailPrefix, setEmailPrefix] = useState('');
     const [savedPaymentAmount, setSavedPaymentAmount] = useState(0); // Initialize with 0
+    const navigate = useNavigate(); // Initialize useNavigate hook
 
     useEffect(() => {
         // Retrieve paymentAmount from localStorage on component mount
@@ -47,13 +48,20 @@ const Navbar = () => {
     const num = useSelector(state => state.courses.num);
     const signOut = () => {
         localStorage.setItem('emailPrefix', "");
+        localStorage.setItem('paymentAmount', "");
         setEmailPrefix('');
+
         const auth = getAuth();
         signOut(auth).then(() => {
             // Sign-out successful.
+            // Dispatch action to reset courses state
+            dispatch(coursesReducer.actions.reset());
+            navigate('/')
         }).catch((error) => {
             // An error happened.
+            console.error('Error signing out:', error);
         });
+
     };
 
 
@@ -139,7 +147,7 @@ const Navbar = () => {
                     {emailPrefix ? (
                         <button onClick={signOut}>Sign Out</button>
                     ) : (
-                        <Link to="/login">
+                        <Link to="/signup">
                             <button>Sign Up</button>
                         </Link>
                     )}
