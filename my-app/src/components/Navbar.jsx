@@ -11,12 +11,23 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-// import React from 'react'
-
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const Navbar = () => {
+
     const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [emailPrefix, setEmailPrefix] = useState('');
+    const [savedPaymentAmount, setSavedPaymentAmount] = useState(0); // Initialize with 0
+
+    useEffect(() => {
+        // Retrieve paymentAmount from localStorage on component mount
+        const savedPaymentAmount = parseFloat(localStorage.getItem('paymentAmount')) || 0;
+        setSavedPaymentAmount(savedPaymentAmount);
+    }, []);
 
     const handleChange = (event) => {
         setAuth(event.target.checked);
@@ -29,10 +40,26 @@ const Navbar = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    {/* my code */ }
+    const num = useSelector(state => state.courses.num);
+    const signOut = () => {
+        localStorage.setItem('emailPrefix', "");
+        setEmailPrefix('');
+    };
 
+
+    useEffect(() => {
+        // Retrieve the email prefix from local storage
+        const savedEmailPrefix = localStorage.getItem('emailPrefix');
+        if (savedEmailPrefix) {
+            setEmailPrefix(savedEmailPrefix);
+        }
+    }, []);
+    console.log(!!emailPrefix)
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <FormGroup>
+            {/* <FormGroup>
+
                 <FormControlLabel
                     control={
                         <Switch
@@ -41,12 +68,12 @@ const Navbar = () => {
                             aria-label="login switch"
                         />
                     }
-                    label={auth ? 'Logout' : 'Login'}
+                    label={emailPrefix ? 'Logout' : 'Login'}
                 />
-            </FormGroup>
+            </FormGroup> */}
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton
+                    {/* <IconButton
                         size="large"
                         edge="start"
                         color="inherit"
@@ -54,11 +81,15 @@ const Navbar = () => {
                         sx={{ mr: 2 }}
                     >
                         <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Photos
-                    </Typography>
-                    {auth && (
+                    </IconButton> */}
+                    <Link to="/">
+                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                            You Academy
+                        </Typography>
+                    </Link>
+                    {emailPrefix && <Typography variant="h6" component="div">Hello, {emailPrefix}!</Typography>}
+
+                    {emailPrefix && (
                         <div>
                             <IconButton
                                 size="large"
@@ -85,14 +116,38 @@ const Navbar = () => {
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
                             >
-                                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                                <MenuItem onClick={handleClose}>My account</MenuItem>
+                                <Link to="/profile">
+
+                                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                </Link>
+                                <Link to="/cart" >
+
+                                    <MenuItem onClick={handleClose}>My cart</MenuItem>
+                                </Link>
                             </Menu>
                         </div>
                     )}
+                    {emailPrefix ? (
+                        <button onClick={signOut}>Sign Out</button>
+                    ) : (
+                        <Link to="/login">
+                            <button>Sign Up</button>
+                        </Link>
+                    )}
+                    <Link to="/cart">
+                        {num}
+                        <ShoppingCartIcon />
+                    </Link>
+                    <Link to="/payment">
+
+                <Typography>
+                    {savedPaymentAmount} $
+                </Typography>
+                    </Link>
                 </Toolbar>
             </AppBar>
         </Box>
     );
 }
 export default Navbar
+

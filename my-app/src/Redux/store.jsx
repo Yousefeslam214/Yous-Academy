@@ -1,13 +1,13 @@
 // store.js
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import {  coursesReducer } from './slices';
 
-import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from './reducers';
+const rootReducer = combineReducers({
+    courses: coursesReducer,
+});
 
+const store = configureStore({
+    reducer: rootReducer,
+});
 
-export const store = configureStore({
-    reducer: {
-        cart: counterReducer
-
-    },
-
-})
+export default store;
