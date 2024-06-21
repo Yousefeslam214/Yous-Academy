@@ -1,5 +1,7 @@
+import React from 'react';
 import Navbar from '../components/Navbar';
 import { Box } from '@mui/material';
+
 import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -17,56 +19,63 @@ const Home = (props) => {
   const courses = useSelector(state => state.courses.courses);
   const [message, setMessage] = useState('');
 
-  const handleAddCourse = (courseName, courseId) => {
-    const courseExists = courses.some(course => course.name === courseName);
-
+  const handleAddCourse = (courseName, courseId, coursePrice) => {
+    const courseExists = courses.some(course => course.name === courseName && course.price === coursePrice);
     if (courseExists) {
       setMessage(`Course with name "${courseName}" already exists.`);
     } else {
-      dispatch(addCourse({ name: courseName, id: courseId }));
+      dispatch(addCourse({ name: courseName, id: courseId, price: coursePrice }));
       setMessage('You have successfully bought a course!');
     }
-
+  
     setTimeout(() => setMessage(''), 5000); // Clear the message after 5 seconds
   };
+
+
 
   return (
     <Box>
       <Navbar />
       {message && <div className={`message ${message.includes('exists') ? 'error' : 'success'}`}>{message}</div>}
       <Box m="20px">
-        <Grid container wrap="nowrap">
+        <Grid container spacing={2}>
           {(loading ? Array.from(new Array(3)) : data).map((item, index) => (
-            <Box key={index} sx={{ width: 210, marginRight: 0.5, my: 5 }}>
-              {item ? (
-                <img
-                  style={{ width: 210, height: 118 }}
-                  alt={item.title}
-                  src={item.src}
-                />
-              ) : (
-                <Skeleton variant="rectangular" width={210} height={118} />
-              )}
-              {item ? (
-                <Box sx={{ pr: 2 }}>
-                  <Typography gutterBottom variant="body2">
-                    {item.title}
-                  </Typography>
-                  <Typography display="block" variant="caption" color="text.secondary">
-                    {item.channel}
-                  </Typography>
-                  <Typography variant="caption" color="text.secondary">
-                    {`${item.views} • ${item.createdAt}`}
-                  </Typography>
-                </Box>
-              ) : (
-                <Box sx={{ pt: 0.5 }}>
-                  <Skeleton />
-                  <Skeleton width="60%" />
-                </Box>
-              )}
-              <button onClick={() => handleAddCourse(item.title, uuidv4())}>Add Course</button>
-            </Box>
+            <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+              <Box sx={{ p: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', height: '100%', background: '#F8F9FA ' }}>
+                {item ? (
+                  <img
+                    style={{ width: '100%', height: 'auto', marginBottom: '10px' }}
+                    alt={item.title}
+                    src={item.src}
+                  />
+                ) : (
+                  <Skeleton variant="rectangular" width="100%" height="118px" />
+                )}
+                {item ? (
+                  <Box sx={{ textAlign: 'center' }}>
+                    <Typography gutterBottom variant="body2" sx={{ fontWeight: 'bold', m: 0 }}>
+                      {item.title}
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      {item.channel}
+                    </Typography>
+
+                  </Box>
+                ) : (
+                  <Box sx={{ textAlign: 'center', pt: 1 }}>
+                    <Skeleton />
+                    <Skeleton width="60%" />
+                  </Box>
+                )}
+                {/* Custom styled button */}
+                <button
+                  onClick={() => handleAddCourse(item.title, item.id, item.price)}
+                  className="custom-button"
+                >
+                  Add Course
+                </button>
+              </Box>
+            </Grid>
           ))}
         </Grid>
       </Box>

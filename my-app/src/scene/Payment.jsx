@@ -2,37 +2,41 @@ import React, { useState, useEffect } from 'react';
 import { Box, TextField, Button, Divider, Typography, InputAdornment } from '@mui/material';
 import cards from '../assets/cards.png';
 import Navbar from '../components/Navbar';
+import { useDispatch, useSelector } from 'react-redux';
+import { addMoney } from '../Redux/slices';
 
 const Payment = () => {
     const [cardNumber, setCardNumber] = useState('');
     const [nameOnCard, setNameOnCard] = useState('');
     const [paymentAmount, setPaymentAmount] = useState('');
-    const [savedPaymentAmount, setSavedPaymentAmount] = useState(0); // Initialize with 0
+    const dispatch = useDispatch();
+    const money = useSelector(state => state.courses.money);
 
     useEffect(() => {
-        // Retrieve paymentAmount from localStorage on component mount
         const savedPaymentAmount = parseFloat(localStorage.getItem('paymentAmount')) || 0;
-        setSavedPaymentAmount(savedPaymentAmount);
+        setPaymentAmount(savedPaymentAmount);
     }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Validate all form fields
         if (!cardNumber || !nameOnCard || !paymentAmount) {
             alert('Please fill out all fields.');
             return;
         }
 
-        // Calculate new payment amount and save to localStorage
-        const newPaymentAmount = savedPaymentAmount + parseFloat(paymentAmount);
-        localStorage.setItem('paymentAmount', newPaymentAmount.toFixed(2)); // Ensure toFixed to save as string with 2 decimal places
+        const paymentAmountNumber = parseFloat(paymentAmount);
+        if (isNaN(paymentAmountNumber) || paymentAmountNumber <= 0) {
+            alert('Please enter a valid payment amount.');
+            return;
+        }
 
-        // Optionally, you can reset the form fields
+        dispatch(addMoney(paymentAmountNumber));
+        localStorage.setItem('paymentAmount', (paymentAmountNumber).toFixed(2));
+
         setCardNumber('');
         setNameOnCard('');
         setPaymentAmount('');
-        setSavedPaymentAmount(newPaymentAmount); // Update savedPaymentAmount state
     };
 
     const handleCardNumberChange = (e) => {
@@ -47,16 +51,20 @@ const Payment = () => {
         setPaymentAmount(e.target.value);
     };
 
+    const handleAddMoney = (amount) => {
+        dispatch(addMoney(amount));
+    };
+
     return (
         <Box>
             <Navbar />
             <Box m="20px">
-
-                <Typography variant='h5'>
+                <Typography variant="h5">
                     Payment Method
                 </Typography>
-                <Divider />
-                <Typography variant='h6'>
+                <Divider sx={{ mt: 2, mb: 2 }} />
+                <Button variant="contained" color="primary" onClick={() => handleAddMoney(100)}>Add $100</Button>
+                <Typography variant="h6">
                     Credit Cards
                 </Typography>
                 <Typography>
@@ -74,6 +82,10 @@ const Payment = () => {
                         onChange={handleCardNumberChange}
                         InputProps={{
                             startAdornment: <InputAdornment position="start">Card Number</InputAdornment>,
+                            inputProps: {
+                                inputMode: 'numeric',
+                                pattern: '[0-9]*',
+                            },
                         }}
                     />
                     <TextField
@@ -100,7 +112,7 @@ const Payment = () => {
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                             inputProps: {
                                 inputMode: 'numeric',
-                                pattern: '[0-9]*', // Only allow numeric input
+                                pattern: '[0-9]*',
                             },
                         }}
                     />
@@ -109,11 +121,15 @@ const Payment = () => {
                     </Button>
                 </form>
                 <Typography variant="h6">
-                    Total Money: ${savedPaymentAmount.toFixed(2)}
+                    Total Money: ${money}
                 </Typography>
+                <Box className="paypal" mt="30px">
+                    <Button onClick={() => window.location.href = 'https://www.paypal.com/ncp/payment/U7X6Q54Y948RQ'} variant="contained" color="secondary">
+                        To PayPal
+                    </Button>
+                </Box>
             </Box>
         </Box>
-
     );
 };
 

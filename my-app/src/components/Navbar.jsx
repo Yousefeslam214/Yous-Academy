@@ -4,38 +4,32 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth, signOut as firebaseSignOut } from "firebase/auth";
 import { coursesReducer } from '../Redux/slices';
+import Button from '@mui/material/Button';
 
+import './Navbar.css';
 
 const Navbar = () => {
-    const dispatch = useDispatch()
-    const [auth, setAuth] = React.useState(true);
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const dispatch = useDispatch();
+    const [anchorEl, setAnchorEl] = useState(null);
     const [emailPrefix, setEmailPrefix] = useState('');
-    const [savedPaymentAmount, setSavedPaymentAmount] = useState(0); // Initialize with 0
-    const navigate = useNavigate(); // Initialize useNavigate hook
+    const [savedPaymentAmount, setSavedPaymentAmount] = useState(0);
+    const navigate = useNavigate();
+    const num = useSelector(state => state.courses.num);
+    const money = useSelector(state => state.courses.money);
 
     useEffect(() => {
-        // Retrieve paymentAmount from localStorage on component mount
         const savedPaymentAmount = parseFloat(localStorage.getItem('paymentAmount')) || 0;
         setSavedPaymentAmount(savedPaymentAmount);
     }, []);
-
-    const handleChange = (event) => {
-        setAuth(event.target.checked);
-    };
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -44,127 +38,111 @@ const Navbar = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-    {/* my code */ }
-    const num = useSelector(state => state.courses.num);
-    const signOut = () => {
-        localStorage.setItem('emailPrefix', "");
-        localStorage.setItem('paymentAmount', "");
+
+    const handleSignOut = () => {
+        localStorage.setItem('emailPrefix', '');
+        localStorage.setItem('paymentAmount', '');
         setEmailPrefix('');
 
         const auth = getAuth();
-        signOut(auth).then(() => {
-            // Sign-out successful.
-            // Dispatch action to reset courses state
+        firebaseSignOut(auth).then(() => {
             dispatch(coursesReducer.actions.reset());
-            navigate('/')
+            navigate('/');
         }).catch((error) => {
-            // An error happened.
             console.error('Error signing out:', error);
         });
-
     };
 
-
     useEffect(() => {
-        // Retrieve the email prefix from local storage
         const savedEmailPrefix = localStorage.getItem('emailPrefix');
         if (savedEmailPrefix) {
             setEmailPrefix(savedEmailPrefix);
         }
     }, []);
-    console.log(!!emailPrefix)
+
     return (
         <Box sx={{ flexGrow: 1 }}>
-            {/* <FormGroup>
-
-                <FormControlLabel
-                    control={
-                        <Switch
-                            checked={auth}
-                            onChange={handleChange}
-                            aria-label="login switch"
-                        />
-                    }
-                    label={emailPrefix ? 'Logout' : 'Login'}
-                />
-            </FormGroup> */}
-            <AppBar position="static">
-                <Toolbar>
-                    {/* <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
-                    >
-                        <MenuIcon />
-                    </IconButton> */}
-                    <Link to="/">
-                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                            You Academy
+            <AppBar position="static" className='appbar' sx={{ background: '#3DC2EC' }}>
+                <Toolbar sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+                        <Typography variant="h6" component="div">
+                            Yous Academy
                         </Typography>
                     </Link>
-                    {emailPrefix && <Typography variant="h6" component="div">Hello, {emailPrefix}!</Typography>}
 
-                    {emailPrefix && (
-                        <div>
-                            <IconButton
-                                size="large"
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                onClick={handleMenu}
-                                color="inherit"
-                            >
-                                <AccountCircle />
-                            </IconButton>
-                            <Menu
-                                id="menu-appbar"
-                                anchorEl={anchorEl}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={Boolean(anchorEl)}
-                                onClose={handleClose}
-                            >
-                                <Link to="/profile">
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
 
-                                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                                </Link>
-                                <Link to="/cart" >
+                        {!emailPrefix && (
+                            <Link to="/signup" style={{ textDecoration: 'none', color: 'inherit', marginLeft: 2 }}>
+                                <Button color="inherit">Sign Up</Button>
+                            </Link>
+                        )}
 
-                                    <MenuItem onClick={handleClose}>My cart</MenuItem>
-                                </Link>
-                            </Menu>
-                        </div>
-                    )}
-                    {emailPrefix ? (
-                        <button onClick={signOut}>Sign Out</button>
-                    ) : (
-                        <Link to="/signup">
-                            <button>Sign Up</button>
-                        </Link>
-                    )}
-                    <Link to="/cart">
-                        {num}
-                        <ShoppingCartIcon />
-                    </Link>
-                    <Link to="/payment">
 
-                        <Typography>
-                            {savedPaymentAmount} $
-                        </Typography>
-                    </Link>
+                        {emailPrefix && (
+                            <>
+                                <Typography variant="h6" component="div" sx={{ marginLeft: 2 }}>
+                                    Hello, {emailPrefix}!
+                                </Typography>
+                                <Box sx={{ display: 'flex', alignItems: 'center', marginLeft: 2 }}>
+                                    <Link to="/payment" style={{ textDecoration: 'none', fontWeight: 'bold', color: 'inherit', marginRight: 10 }}>
+                                        <Typography>
+                                            {money} $
+                                        </Typography>
+                                    </Link>
+                                    <Link to="/cart" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                            <ShoppingCartIcon />
+                                            <Typography sx={{ marginLeft: 1 }}>{num}</Typography>
+                                        </Box>
+                                    </Link>
+                                </Box>
+                                <IconButton
+                                    size="large"
+                                    aria-label="account of current user"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    onClick={handleMenu}
+                                    color="inherit"
+                                    sx={{ marginLeft: 2 }}
+                                >
+                                    <AccountCircle />
+                                </IconButton>
+                                <Menu
+                                    id="menu-appbar"
+                                    anchorEl={anchorEl}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    open={Boolean(anchorEl)}
+                                    onClose={handleClose}
+                                >
+                                    <Link to="/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                    </Link>
+                                    <Link to="/cart" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <MenuItem onClick={handleClose}>My cart</MenuItem>
+                                    </Link>
+                                    <Link to="/mycourses" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <MenuItem onClick={handleClose}>My Courses</MenuItem>
+                                    </Link>
+                                    <MenuItem onClick={handleSignOut} style={{ color: '#FF6F61' }}>
+                                        Sign Out
+                                    </MenuItem>
+                                </Menu>
+                            </>
+                        )}
+                    </Box>
                 </Toolbar>
             </AppBar>
         </Box>
     );
-}
-export default Navbar
+};
 
+export default Navbar;

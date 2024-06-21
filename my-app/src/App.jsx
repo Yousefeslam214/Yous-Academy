@@ -17,6 +17,10 @@ import React from 'react';
 
 import SignUpForm from './scene/SignUpForm';
 import PurchaseCourses from './scene/PurchaseCourses';
+import VideoPage from './scene/VideoPage';
+
+
+
 function App() {
   const dispatch = useDispatch();
   const courses = useSelector(state => state.courses.courses);
@@ -31,27 +35,27 @@ function App() {
       className: '',
       // url: '/courses/math-101' // Add course URL here
     };
-    
-    
+
+
     dispatch(addCourse(course));
   }
-    const handleAddValidCourse = () => {
-      const courseValid = {
-        // name: 'Math 101',
-        className: 'valid',
-        // url: '/courses/math-101' // Add course URL here
-      };
+  const handleAddValidCourse = () => {
+    const courseValid = {
+      // name: 'Math 101',
+      className: 'valid',
+      // url: '/courses/math-101' // Add course URL here
+    };
     dispatch(addCourse(courseValid));
   };
 
   return (
     <>
-      <div>
+      {/* <div>
         <button onClick={handleAddCourse}>Add Course</button>
       </div>
       <div>
         <button onClick={handleAddValidCourse}>handleAddValidCourse</button>
-      </div>
+      </div> */}
 
       {/* <Navbar /> */}
       {/* <h1>{num }</h1> */}
@@ -66,6 +70,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/mycourses" element={<PurchaseCourses />} />
+        <Route path="/video/:courseId" element={<VideoPage />} />
         {/* <Route path="*" element={<NoPage />} />  */}
         {/* </Route> */}
       </Routes>

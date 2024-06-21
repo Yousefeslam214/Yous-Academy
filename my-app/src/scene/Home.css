@@ -15,3 +15,18 @@
 .message.error {
   background-color: #f44336;
 }
+.custom-button {
+  background-color: #3DC2EC;
+  color: #FFFFFF;
+  padding: 8px 16px;
+  margin: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.custom-button:hover {
+  background-color: #9c27b0;
+  /* Darker shade of the primary color on hover */
+}
