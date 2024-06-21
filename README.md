@@ -79,8 +79,7 @@ const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-export { app, auth, db };</code></pre>
-  </ol>
+export { app, auth, db };</code></pre></ol>
   <h2 id="deployment">Deployment</h2>
   <ol>
     <li>Build the application:</li>
