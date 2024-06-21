@@ -16,7 +16,7 @@ import React from 'react';
 // import { addCourse } from './Redux/slices';
 
 import SignUpForm from './scene/SignUpForm';
-import PurchaseCourses from './scene/MyCourses';
+import MyCourses from './scene/MyCourses';
 import VideoPage from './scene/VideoPage';
 
 
@@ -69,7 +69,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/payment" element={<Payment />} />
-        <Route path="/mycourses" element={<PurchaseCourses />} />
+        <Route path="/mycourses" element={<MyCourses />} />
         <Route path="/video/:courseId" element={<VideoPage />} />
         {/* <Route path="*" element={<NoPage />} />  */}
         {/* </Route> */}
