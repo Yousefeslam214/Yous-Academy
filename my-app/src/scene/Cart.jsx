@@ -5,6 +5,7 @@ import { addCourse, purchaseCourses, addMoney, buyCourse } from '../Redux/slices
 import { Box, Typography, Button, Divider } from '@mui/material';
 import { Link } from 'react-router-dom';
 import data from '../scene/HomeData';
+import './Cart.css'
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -37,30 +38,31 @@ const Cart = () => {
   return (
     <Box>
       <Navbar />
-      <Box m="20px">
-        <Typography variant="h4">Number of courses in your cart: {num}</Typography>
-        <Typography variant="h4">Available balance: ${money}</Typography>
+      <Box className='container'>
+      {/* <Box > */}
+        <Typography variant="h4" className='textLarge'>Number of courses in your cart: {num}</Typography>
+        <Typography variant="h4" className='textLarge'>Available balance: ${money}</Typography>
         <Divider sx={{ mt: 2, mb: 2 }} />
         <Box>
-          <Typography variant="h4" gutterBottom>Your Courses:</Typography>
+          <Typography variant="h4" gutterBottom className='textLarge'>Your Courses:</Typography>
           {courses.length > 0 ? (
             courses.map((course) => (
-              <Box key={course.id} sx={{ marginBottom: 2, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <Box key={course.id} sx={{ marginBottom: 2, display: "flex", alignItems: "center", justifyContent: "space-between" }} className='textSmall'>
                 <Box sx={{ width: '100px', height: 'auto' }}>
-                  <img src={getImageUrlForId(course.id)} alt={course.name} style={{ width: '100%', height: 'auto' }} />
+                  <img src={getImageUrlForId(course.id)} alt={course.name} style={{ width: '100%', height: 'auto' }} className='imgCart' />
                 </Box>
-                <Typography variant="h6" className={course.className} sx={{ width: "50%" }}>
+                <Typography variant="h6" className='textSmall' sx={{ width: "50%" }}>
                   {course.name}
                 </Typography>
-                <Typography variant="body1">${course.price}</Typography>
-                <Button variant="contained" color="primary" onClick={() => handleBuyCourse(course)}>Buy</Button>
+                <Typography variant="body1" className='textSmall'>${course.price}</Typography>
+                <Button variant="contained" color="primary" onClick={() => handleBuyCourse(course)} className='btn-small-text'>Buy</Button>
                 <Link to="/" style={{ textDecoration: 'none' }}>
-                  <Button variant="contained" color="primary">View Course</Button>
+                  <Button variant="contained" color="primary" className='no'>View Course</Button>
                 </Link>
               </Box>
             ))
           ) : (
-            <Typography variant="body1">No courses added to your cart yet.</Typography>
+            <Typography variant="body1" className='textSmall'>No courses added to your cart yet.</Typography>
           )}
           <Box sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}>
             <Button
@@ -69,6 +71,7 @@ const Cart = () => {
               onClick={handlePurchase}
               disabled={courses.length === 0}
               sx={{ backgroundColor: "#3DC2EC", color: '#FFFFFF' }}
+              className='btn-small-text'
             >
               Purchase All Courses
             </Button>
@@ -80,6 +83,8 @@ const Cart = () => {
           color="secondary"
           onClick={goToMyCourses}
           sx={{ backgroundColor: "#3DC2EC", marginTop: "35px", color: '#FFFFFF' }}
+          className='btn-small-text'
+
         >
           Go to Your Courses  🡆
         </Button>

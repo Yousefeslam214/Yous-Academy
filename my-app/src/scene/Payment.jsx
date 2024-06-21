@@ -59,7 +59,7 @@ const Payment = () => {
     <Box>
       <Navbar />
       <Box m="20px">
-        <Typography variant="h5">
+        <Typography variant="h5" className='textLarge'>
           Payment Method
         </Typography>
         <Divider sx={{ mt: 2, mb: 2 }} />
@@ -67,16 +67,17 @@ const Payment = () => {
           variant="contained"
           color="primary"
           onClick={() => handleAddMoney(100)}
+          className='no'
         >
           Add $100
         </Button>
-        <Typography variant="h6">
+        <Typography variant="h6" className='textLarge'>
           Credit Cards
         </Typography>
-        <Typography>
+        <Typography className='textSmall'>
           You Academy accepts major credit and debit cards.
         </Typography>
-        <img src={cards} alt="Accepted Cards" />
+        <img src={cards} alt="Accepted Cards" className='imgCart' />
         <form onSubmit={handleSubmit}>
           <TextField
             id="cardNumber"
@@ -122,11 +123,12 @@ const Payment = () => {
               },
             }}
           />
-          <Button type="submit" variant="contained" color="primary">
+          <Button type="submit" variant="contained" color="primary" className='btn-small-text'
+          >
             Submit
           </Button>
         </form>
-        <Typography variant="h6" mt="10px">
+        <Typography variant="h6" mt="10px" className='textLarge'>
           Total Money: ${money}
         </Typography>
         <Box className="paypal" mt="20px">
@@ -135,6 +137,7 @@ const Payment = () => {
             color="secondary"
             onClick={() => window.location.href = 'https://www.paypal.com/ncp/payment/U7X6Q54Y948RQ'}
             sx={{ backgroundColor: "#3DC2EC", color: '#FFFFFF' }}
+            className='btn-small-text'
           >
             Go To PayPal
           </Button>

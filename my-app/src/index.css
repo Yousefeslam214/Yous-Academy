@@ -18,9 +18,10 @@ body {
 }
 
 .container {
-  width: 80%;
+  /* width: 80%;
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px; */
+  margin: 20px;
 }
 
 h1, h2, h3 {
@@ -124,4 +125,36 @@ ul {
 .custom-button:hover {
   background-color: #9c27b0;
   /* Darker shade of the primary color on hover */
+}
+
+
+@media (max-width: 768px) {
+
+  .textLarge {
+    font-size: large !important;
+    font-size: bold;
+  }
+
+  .textSmall {
+    font-size: x-small !important;
+  }
+
+  .btn-small-text {
+    padding: 5px !important;
+    /* width: 100px; */
+    font-size: 8px !important;
+    margin: 5px !important;
+  }
+
+  .no {
+    display: none !important;
+  }
+
+  .container {
+    margin: 10px !important;
+  }
+    .imgCart {
+      width: 60px !important;
+    }
+
 }

@@ -15,7 +15,7 @@ const MyCourses = () => {
         {purchaseCourses.length > 0 ? (
           purchaseCourses.map(course => (
             <Box key={course.id} sx={{ marginTop: 5, display: "flex", justifyContent: "space-between" }}>
-              <Typography variant="h6" sx={{ alignSelf: "center" }}>
+              <Typography variant="h6" sx={{ alignSelf: "center" }} className='textLarge'>
                 {course.name}
               </Typography>
               <Link to={`/video/${course.id}`} style={{ textDecoration: 'none' }}>
@@ -24,6 +24,7 @@ const MyCourses = () => {
                     variant="contained"
                     color="secondary"
                     sx={{ backgroundColor: "#3DC2EC", color: '#FFFFFF' }}
+                    className='btn-small-text'
                   >
                     Go to Course
                   </Button>
