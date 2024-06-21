@@ -1,3 +1,4 @@
+// import React from 'react'
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -14,8 +15,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { getAuth, signOut as firebaseSignOut } from "firebase/auth";
 import { coursesReducer } from '../Redux/slices';
 import Button from '@mui/material/Button';
-
 import './Navbar.css';
+
 
 const Navbar = () => {
     const dispatch = useDispatch();
