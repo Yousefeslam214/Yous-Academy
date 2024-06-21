@@ -15,8 +15,7 @@
   <ol>
     <li>Clone the repository:</li>
     <pre><code>git clone https://github.com/your-username/yous-academy.git
-cd yous-academy
-    </code></pre>
+cd yous-academy</code></pre>
     <li>Install the dependencies:</li>
     <pre><code>npm install react-router-dom
 npm install @mui/material @emotion/react @emotion/styled
@@ -25,17 +24,14 @@ npm install redux react-redux
 npm install @reduxjs/toolkit react-redux
 npm install uuid
 npm install firebase
-npm install -g firebase-tools
-    </code></pre>
+npm install -g firebase-tools</code></pre>
     <li>Configure Firebase:</li>
     <ul>
       <li>Login to Firebase:</li>
-      <pre><code>firebase login
-      </code></pre>
+      <pre><code>firebase login</code></pre>
       <li>Initialize Firebase in your project:</li>
       <pre><code>firebase init
-firebase init hosting
-</code></pre>
+firebase init hosting</code></pre>
 </ul>
   </ol>
   <h2 id="project-structure">Project Structure</h2>
@@ -83,18 +79,14 @@ const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-export { app, auth, db };
-</code></pre>
-
+export { app, auth, db };</code></pre>
   </ol>
   <h2 id="deployment">Deployment</h2>
   <ol>
     <li>Build the application:</li>
-    <pre><code>npm run build
-    </code></pre>
+    <pre><code>npm run build</code></pre>
     <li>Deploy to Firebase Hosting:</li>
-    <pre><code>firebase deploy
-    </code></pre>
+    <pre><code>firebase deploy</code></pre>
   </ol>
   <p>You can view the deployed application at <a href="https://fir-frontend-7d4bd.web.app/">https://fir-frontend-7d4bd.web.app/</a>.</p>
 
