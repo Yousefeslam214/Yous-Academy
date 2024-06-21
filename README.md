@@ -18,8 +18,7 @@
 cd yous-academy
     </code></pre>
     <li>Install the dependencies:</li>
-    <pre><code>
-    npm install react-router-dom
+    <pre><code>npm install react-router-dom
 npm install @mui/material @emotion/react @emotion/styled
 npm install @mui/icons-material
 npm install redux react-redux
@@ -50,8 +49,7 @@ firebase init hosting
 │   ├── scene/
 │   ├── firebaseConfig.js
 │   ├── App.js
-│   ├── index.js
-│   └── Navbar.css
+│   └── main.js
 ├── .gitignore
 ├── firebase.json
 ├── package.json
@@ -59,9 +57,7 @@ firebase init hosting
   </code></pre>
   <h2 id="usage">Usage</h2>
   <p>To start the development server, run:</p>
-  <pre><code>npm start
-  </code></pre>
-  <p>Navigate to <code>http://localhost:3000</code> in your browser to see the application in action.</p>
+  <pre><code>npm start</code></pre>
   <h2 id="firebase-setup">Firebase Setup</h2>
   <ol>
     <li>Create a Firebase project in the <a href="https://console.firebase.google.com/">Firebase Console</a>.</li>
@@ -113,44 +109,3 @@ export { app, auth, db };
   <p>Contributions are welcome! Please open an issue or submit a pull request to contribute to the project.</p>
   <h2 id="license">License</h2>
   <p>This project is licensed under the MIT License.</p>
-  <hr>
-  <h3>App Component</h3>
-  <pre><code>// src/App.js
-
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Home from './scene/Home';
-import LoginForm from './scene/LoginForm';
-import SignUpForm from './scene/SignUpForm';
-import Cart from './scene/Cart';
-import Payment from './scene/Payment';
-import MyCourses from './scene/MyCourses';
-import VideoPage from './scene/VideoPage';
-import NoPage from './NoPage';
-
-function App() {
-return (
-&lt;&gt;
-&lt;Routes&gt;
-&lt;Route path="/" element=&lt;Home /&gt; /&gt;
-&lt;Route path="/login" element=&lt;LoginForm /&gt; /&gt;
-&lt;Route path="/signup" element=&lt;SignUpForm /&gt; /&gt;
-&lt;Route path="/home" element=&lt;Home /&gt; /&gt;
-&lt;Route path="/cart" element=&lt;Cart /&gt; /&gt;
-&lt;Route path="/payment" element=&lt;Payment /&gt; /&gt;
-&lt;Route path="/mycourses" element=&lt;MyCourses /&gt; /&gt;
-&lt;Route path="/video/:courseId" element=&lt;VideoPage /&gt; /&gt;
-&lt;Route path="\*" element=&lt;NoPage /&gt; /&gt;
-&lt;/Routes&gt;
-&lt;/&gt;
-);
-}
-
-export default App;
-</code></pre>
-
-  <footer>
-    <p>Feel free to customize this README and the project as needed. Happy coding!</p>
-  </footer>
-</body>
-</html>
