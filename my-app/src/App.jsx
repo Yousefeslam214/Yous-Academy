@@ -16,7 +16,7 @@ import React from 'react';
 // import { addCourse } from './Redux/slices';
 
 import SignUpForm from './scene/SignUpForm';
-import PurchaseCourses from './scene/PurchaseCourses';
+import PurchaseCourses from './scene/MyCourses';
 import VideoPage from './scene/VideoPage';
 
 

@@ -1,13 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
+import data from '../scene/HomeData'
+
+
 
 const coursesSlice = createSlice({
   name: 'courses',
   initialState: {
     courses: [],
     num: 0,
-    money: 5000,
-    purchasedCourses: [],
+    money: 0,
+    purchasedCourses: [{
+      name: 'Learn HTML in one course for free', id: 123,
+    }],
   },
   reducers: {
     addCourse: (state, action) => {
@@ -30,6 +35,7 @@ const coursesSlice = createSlice({
       state.num -= 1;
     },
     purchaseCourses: (state) => {
+
       if (state.courses.length > 0) {
         const totalCost = state.courses.reduce((acc, course) => acc + course.price, 0);
 
@@ -38,9 +44,9 @@ const coursesSlice = createSlice({
           state.courses = [];
           state.num = 0;
           state.money -= totalCost;
-          console.log('Courses purchased successfully.');
+          alert('Courses purchased successfully.');
         } else {
-          console.log('Insufficient funds to purchase all courses.');
+          alert('Insufficient funds to purchase all courses.');
         }
       }
     },
@@ -53,12 +59,15 @@ const coursesSlice = createSlice({
 
       if (!courseExists && state.money >= course.price) {
         state.purchasedCourses.push(course);
+        state.courses = state.courses.filter(c => c.id !== course.id);
         state.money -= course.price;
-        console.log(`Course with name "${course.name}" purchased successfully.`);
+        state.num -= 1;
+
+        alert(`Course with name "${course.name}" purchased successfully.`);
       } else if (courseExists) {
-        console.log(`Course with name "${course.name}" has already been purchased.`);
+        alert(`Course with name "${course.name}" has already been purchased.`);
       } else {
-        console.log(`Insufficient funds to purchase "${course.name}".`);
+        alert(`Insufficient funds to purchase "${course.name}".`);
       }
     },
   }

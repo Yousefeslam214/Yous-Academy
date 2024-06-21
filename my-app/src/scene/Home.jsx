@@ -12,22 +12,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addCourse } from '../Redux/slices';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { Link } from 'react-router-dom';
 
 const Home = (props) => {
   const { loading = false } = props;
   const dispatch = useDispatch();
-  const courses = useSelector(state => state.courses.courses);
-  const [message, setMessage] = useState('');
+  const courses = useSelector(state => state.courses.purchasedCourses);
+  // const courseExists = courses.some(course => course.name === courseName && course.price === coursePrice);
 
+  const [message, setMessage] = useState('');
+  // const courses = useSelector(state => state.courses.courses);
+  
+  const courseExistsonCourses = useSelector(state => state.courses.courses);
   const handleAddCourse = (courseName, courseId, coursePrice) => {
-    const courseExists = courses.some(course => course.name === courseName && course.price === coursePrice);
+    const courseExists = courseExistsonCourses.some(course => course.name === courseName);
+    
     if (courseExists) {
       setMessage(`Course with name "${courseName}" already exists.`);
     } else {
       dispatch(addCourse({ name: courseName, id: courseId, price: coursePrice }));
       setMessage('You have successfully bought a course!');
     }
-  
+
     setTimeout(() => setMessage(''), 5000); // Clear the message after 5 seconds
   };
 
@@ -65,15 +71,24 @@ const Home = (props) => {
                   <Box sx={{ textAlign: 'center', pt: 1 }}>
                     <Skeleton />
                     <Skeleton width="60%" />
+                    
                   </Box>
+                  
                 )}
                 {/* Custom styled button */}
-                <button
-                  onClick={() => handleAddCourse(item.title, item.id, item.price)}
-                  className="custom-button"
-                >
-                  Add Course
-                </button>
+                {courses.some(course => course.name === item.title) ? (
+                  <Link to={`/video/${item.id}`} style={{ textDecoration: 'none' }}>
+                  <button className="custom-button">Open Course</button>
+                  </Link>
+                ) : (
+
+                  <button 
+                    onClick={() => handleAddCourse(item.title, item.id, item.price)}
+                    className="custom-button"
+                  >
+                    Add Course
+                  </button>
+                )}
               </Box>
             </Grid>
           ))}

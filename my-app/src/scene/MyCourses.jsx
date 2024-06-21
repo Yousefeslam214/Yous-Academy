@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography, Button, Divider } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import Navbar from '../components/Navbar';
 import { Link } from 'react-router-dom';
@@ -28,16 +28,25 @@ const PurchaseCourses = () => {
             <Navbar />
             <Box sx={{ padding: 2 }}>
                 <Typography variant="h4" gutterBottom>Purchased Courses</Typography>
+                <Divider sx={{ mb: 3, }} />
                 {purchaseCourses.length > 0 ? (
                     purchaseCourses.map(course => (
-                        <Box key={course.id} sx={{ marginBottom: 2 }}>
-                            <Typography variant="h6" className={course.className}>
+                        <Box key={course.id} sx={{ marginTop: 5, display: "flex", justifyContent: "space-between" }}>
+                            <Typography variant="h6" sx={{alignSelf: "center"}}>
                                 {course.name}
                             </Typography>
-                            <Link to={course.url} style={{ textDecoration: 'none' }}>
-                                <Button variant="contained" color="primary">
-                                    Go to Course
-                                </Button>
+
+                            <Link to={`/video/${course.id}`} style={{ textDecoration: 'none' }}>
+
+                                <Box sx={{ display: "flex", justifyContent: "center"}}>
+                                    <Button
+                                        variant="contained"
+                                        color="secondary"
+                                        sx={{ backgroundColor: "#3DC2EC", color: '#FFFFFF' }}
+                                    >
+                                        Go to Course
+                                    </Button>
+                                </Box>
                             </Link>
                         </Box>
                     ))

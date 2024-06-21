@@ -40,7 +40,6 @@ const Cart = () => {
             return;
         }
         dispatch(purchaseCourses());
-        alert('Courses purchased successfully!');
     };
 
     const handleAddMoney = (amount) => {

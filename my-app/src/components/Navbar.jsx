@@ -123,7 +123,7 @@ const Navbar = () => {
                                     open={Boolean(anchorEl)}
                                     onClose={handleClose}
                                 >
-                                    <Link to="/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <Link  style={{ textDecoration: 'none', color: 'inherit' }}>
                                         <MenuItem onClick={handleClose}>Profile</MenuItem>
                                     </Link>
                                     <Link to="/cart" style={{ textDecoration: 'none', color: 'inherit' }}>
