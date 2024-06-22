@@ -1,11 +1,9 @@
 // store.js
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import {  coursesReducer } from './slices';
-// import { authReducer } from './authSlice'; // Adjust the path as per your actual file structure
+import { coursesReducer } from './slices';
 
 const rootReducer = combineReducers({
     courses: coursesReducer,
-    // auth: authReducer,
 
 });
 

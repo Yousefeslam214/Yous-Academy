@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
+import Navbar from '../shared/navbar/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCourse, purchaseCourses, addMoney, buyCourse } from '../Redux/slices';
+import { addCourse, purchaseCourses, addMoney, removeCourse, buyCourse } from '../../Redux/slices';
 import { Box, Typography, Button, Divider } from '@mui/material';
 import { Link } from 'react-router-dom';
-import data from '../scene/HomeData';
+import data from '../../data/HomeData';
 import './Cart.css'
-
+import DeleteIcon from '@mui/icons-material/Delete';
 const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -20,6 +20,10 @@ const Cart = () => {
       return;
     }
     dispatch(purchaseCourses());
+  };
+  const handleRemove = (course) => {
+
+    dispatch(removeCourse(course));
   };
 
   const handleBuyCourse = (course) => {
@@ -39,7 +43,7 @@ const Cart = () => {
     <Box>
       <Navbar />
       <Box className='container'>
-      {/* <Box > */}
+        {/* <Box > */}
         <Typography variant="h4" className='textLarge'>Number of courses in your cart: {num}</Typography>
         <Typography variant="h4" className='textLarge'>Available balance: ${money}</Typography>
         <Divider sx={{ mt: 2, mb: 2 }} />
@@ -58,6 +62,9 @@ const Cart = () => {
                 <Button variant="contained" color="primary" onClick={() => handleBuyCourse(course)} className='btn-small-text'>Buy</Button>
                 <Link to="/" style={{ textDecoration: 'none' }}>
                   <Button variant="contained" color="primary" className='no'>View Course</Button>
+                </Link>
+                <Link >
+                  <DeleteIcon className='textLarge' onClick={() => handleRemove(course)} />
                 </Link>
               </Box>
             ))
@@ -84,9 +91,8 @@ const Cart = () => {
           onClick={goToMyCourses}
           sx={{ backgroundColor: "#3DC2EC", marginTop: "35px", color: '#FFFFFF' }}
           className='btn-small-text'
-
         >
-          Go to Your Courses  🡆
+          Go to Your Courses
         </Button>
       </Box>
     </Box>

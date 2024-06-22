@@ -15,3 +15,6 @@
 .message.error {
   background-color: #f44336;
 }
+.message:hover {
+  display: none;
+}

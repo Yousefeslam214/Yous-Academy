@@ -4,7 +4,7 @@ import { AccountCircle, ShoppingCart as ShoppingCartIcon } from '@mui/icons-mate
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuth, signOut as firebaseSignOut } from 'firebase/auth';
-import { coursesReducer } from '../Redux/slices';
+import { coursesReducer } from '../../../Redux/slices';
 import './Navbar.css';
 
 const Navbar = () => {

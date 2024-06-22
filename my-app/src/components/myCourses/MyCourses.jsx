@@ -1,6 +1,6 @@
 import { Box, Typography, Button, Divider } from '@mui/material';
+import Navbar from '../shared/navbar/Navbar';
 import { useSelector } from 'react-redux';
-import Navbar from '../components/Navbar';
 import { Link } from 'react-router-dom';
 
 const MyCourses = () => {

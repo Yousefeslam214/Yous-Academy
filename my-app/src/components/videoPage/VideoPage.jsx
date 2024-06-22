@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import data from '../data/HomeData';
-import Navbar from '../components/navbar';
+import data from '../../data/HomeData';
+// import Navbar from '../components/shared/navbar';
+import Navbar from '../shared/navbar/Navbar';
 import { Box, Typography } from '@mui/material';
 import './VideoPage.css';
 

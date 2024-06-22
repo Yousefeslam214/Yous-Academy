@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Box, TextField, Button, Divider, Typography, InputAdornment } from '@mui/material';
-import cards from '../assets/cards.png';
-import Navbar from '../components/Navbar';
+import cards from '../../assets/cards.png';
+import Navbar from '../shared/navbar/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
-import { addMoney } from '../Redux/slices';
+import { addMoney } from '../../Redux/slices';
 
 const Payment = () => {
   const [cardNumber, setCardNumber] = useState('');

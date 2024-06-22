@@ -1,20 +1,13 @@
-// import { useState } from 'react'
-import LoginForm from './scene/LoginForm'
-import Home from './scene/Home'
-import { useDispatch, useSelector } from 'react-redux';
-import { addCourse } from './Redux/slices';
-import {  Routes, Route } from "react-router-dom";
-import Cart from './scene/Cart';
-import Payment from './scene/Payment';
-import {  db } from './firebaseConfig'
-import { collection } from 'firebase/firestore';
+import LoginForm from './components/login&sign/LoginForm'
+import Home from './components/home/Home'
+import { Routes, Route } from "react-router-dom";
+import Cart from './components/cart/Cart';
+import Payment from './components/payment/Payment';
 import React from 'react';
-
-import SignUpForm from './scene/SignUpForm';
-import MyCourses from './scene/MyCourses';
-import VideoPage from './scene/VideoPage';
-import NoPage from './NoPage';
-
+import SignUpForm from './components/login&sign/SignUpForm';
+import MyCourses from './components/myCourses/MyCourses';
+import VideoPage from './components/videoPage/VideoPage';
+import NoPage from './components/shared/noPage/NoPage';
 
 
 function App() {
@@ -29,7 +22,7 @@ function App() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/mycourses" element={<MyCourses />} />
         <Route path="/video/:courseId" element={<VideoPage />} />
-        <Route path="*" element={<NoPage />} /> 
+        <Route path="*" element={<NoPage />} />
       </Routes>
     </>
   )

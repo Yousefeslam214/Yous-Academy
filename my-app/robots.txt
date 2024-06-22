@@ -1,0 +1,8 @@
+User-agent: Googlebot
+
+User-agent: *
+Disallow: /nogooglebot/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /admin/
+Allow: /
