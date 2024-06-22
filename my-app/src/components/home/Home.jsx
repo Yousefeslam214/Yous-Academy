@@ -44,7 +44,8 @@ const Home = (props) => {
                                         style={{ width: '100%', height: 'auto', marginBottom: '10px' }}
                                         alt={item.title}
                                         src={item.src}
-                                        loading={item.title === "Learn CSS in one course" ? "eager" : "lazy"}
+                                        // loading={item.title === "Learn CSS in one course" ? "eager" : "lazy"}
+                                        loading="lazy"
                                         width="400"
                                         srcSet={`${item.title} 400w, ${item.title} 800w`}
 
