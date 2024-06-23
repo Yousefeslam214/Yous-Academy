@@ -18,3 +18,22 @@
 .message:hover {
   display: none;
 }
+
+.course-card {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  background: #f8f9fa;
+}
+.course-title {
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+}
+.custom-button-link {
+  text-decoration: none;
+}
+

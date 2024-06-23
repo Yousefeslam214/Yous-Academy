@@ -1,5 +1,5 @@
 import LoginForm from './components/login&sign/LoginForm'
-import Home from './components/home/Home'
+// import Home from './components/home/Home'
 import { Routes, Route } from "react-router-dom";
 import Cart from './components/cart/Cart';
 import Payment from './components/payment/Payment';
@@ -8,11 +8,17 @@ import SignUpForm from './components/login&sign/SignUpForm';
 import MyCourses from './components/myCourses/MyCourses';
 import VideoPage from './components/videoPage/VideoPage';
 import NoPage from './components/shared/noPage/NoPage';
+import Navbar from './components/shared/navbar/Navbar';
+
+
+const Home = React.lazy(() => import('./Home'));
+
 
 
 function App() {
   return (
     <>
+      <Navbar />
       <Routes>
         <Route index element={<Home />} />
         <Route path="/login" element={<LoginForm />} />
