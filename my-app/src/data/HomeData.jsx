@@ -1,6 +1,6 @@
 const data = [
   {
-    src: 'https://www.oxfordwebstudio.com/user/pages/06.da-li-znate/sta-je-html/sta-je-html.jpg',
+    src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa_EipSRfPVNEeyj6Q16qE79vugIbrS7s3YA&s',
     title: 'Learn HTML in one course for free',
     channel: 'Yous Academy',
     views: '396k views',
@@ -58,5 +58,3 @@ const data = [
 ];
 
 export default data;
-
-
