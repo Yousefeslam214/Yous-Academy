@@ -56,89 +56,92 @@ const Payment = () => {
   };
 
   return (
-    <Box className="container">
-      <Typography variant="h5" className='textLarge'>
-        Payment Method
-      </Typography>
-      <Divider sx={{ mt: 2, mb: 2 }} />
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => handleAddMoney(100)}
-        className='no'
-      >
-        Add $100
-      </Button>
-      <Typography variant="h6" className='textLarge'>
-        Credit Cards
-      </Typography>
-      <Typography className='textSmall'>
-        You Academy accepts major credit and debit cards.
-      </Typography>
-      <img src={cards} alt="Accepted Cards" className='imgCart' />
-      <form onSubmit={handleSubmit}>
-        <TextField
-          id="cardNumber"
-          label="Card Number"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          value={cardNumber}
-          onChange={handleCardNumberChange}
-          InputProps={{
-            startAdornment: <InputAdornment position="start">Card Number</InputAdornment>,
-            inputProps: {
-              inputMode: 'numeric',
-              pattern: '[0-9]*',
-            },
-          }}
-        />
-        <TextField
-          id="nameOnCard"
-          label="Name on Card"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          value={nameOnCard}
-          onChange={handleNameOnCardChange}
-          InputProps={{
-            startAdornment: <InputAdornment position="start">Name on Card</InputAdornment>,
-          }}
-        />
-        <TextField
-          id="paymentAmount"
-          label="Payment Amount $"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          value={paymentAmount}
-          onChange={handlePaymentAmountChange}
-          InputProps={{
-            startAdornment: <InputAdornment position="start">$</InputAdornment>,
-            inputProps: {
-              inputMode: 'numeric',
-              pattern: '[0-9]*',
-            },
-          }}
-        />
-        <Button type="submit" variant="contained" color="primary" className='btn-small-text'
-        >
-          Submit
-        </Button>
-      </form>
-      <Typography variant="h6" mt="10px" className='textLarge'>
-        Total Money: ${money}
-      </Typography>
-      <Box className="paypal" mt="20px">
+    <Box>
+      <Navbar />
+      <Box m="20px">
+        <Typography variant="h5" className='textLarge'>
+          Payment Method
+        </Typography>
+        <Divider sx={{ mt: 2, mb: 2 }} />
         <Button
           variant="contained"
-          color="secondary"
-          onClick={() => window.location.href = 'https://www.paypal.com/ncp/payment/U7X6Q54Y948RQ'}
-          sx={{ backgroundColor: "#3DC2EC", color: '#FFFFFF' }}
-          className='btn-small-text'
+          color="primary"
+          onClick={() => handleAddMoney(100)}
+          className='no'
         >
-          Go To PayPal
+          Add $100
         </Button>
+        <Typography variant="h6" className='textLarge'>
+          Credit Cards
+        </Typography>
+        <Typography className='textSmall'>
+          You Academy accepts major credit and debit cards.
+        </Typography>
+        <img src={cards} alt="Accepted Cards" className='imgCart' />
+        <form onSubmit={handleSubmit}>
+          <TextField
+            id="cardNumber"
+            label="Card Number"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            value={cardNumber}
+            onChange={handleCardNumberChange}
+            InputProps={{
+              startAdornment: <InputAdornment position="start">Card Number</InputAdornment>,
+              inputProps: {
+                inputMode: 'numeric',
+                pattern: '[0-9]*',
+              },
+            }}
+          />
+          <TextField
+            id="nameOnCard"
+            label="Name on Card"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            value={nameOnCard}
+            onChange={handleNameOnCardChange}
+            InputProps={{
+              startAdornment: <InputAdornment position="start">Name on Card</InputAdornment>,
+            }}
+          />
+          <TextField
+            id="paymentAmount"
+            label="Payment Amount $"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            value={paymentAmount}
+            onChange={handlePaymentAmountChange}
+            InputProps={{
+              startAdornment: <InputAdornment position="start">$</InputAdornment>,
+              inputProps: {
+                inputMode: 'numeric',
+                pattern: '[0-9]*',
+              },
+            }}
+          />
+          <Button type="submit" variant="contained" color="primary" className='btn-small-text'
+          >
+            Submit
+          </Button>
+        </form>
+        <Typography variant="h6" mt="10px" className='textLarge'>
+          Total Money: ${money}
+        </Typography>
+        <Box className="paypal" mt="20px">
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => window.location.href = 'https://www.paypal.com/ncp/payment/U7X6Q54Y948RQ'}
+            sx={{ backgroundColor: "#3DC2EC", color: '#FFFFFF' }}
+            className='btn-small-text'
+          >
+            Go To PayPal
+          </Button>
+        </Box>
       </Box>
     </Box>
   );

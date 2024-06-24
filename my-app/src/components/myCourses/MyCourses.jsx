@@ -1,4 +1,5 @@
 import { Box, Typography, Button, Divider } from '@mui/material';
+import Navbar from '../shared/navbar/Navbar';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -6,7 +7,9 @@ const MyCourses = () => {
   const purchaseCourses = useSelector(state => state.courses.purchasedCourses);
 
   return (
-    <Box className="container">
+    <Box>
+      <Navbar />
+      <Box sx={{ padding: 2 }}>
         <Typography variant="h4" gutterBottom>Purchased Courses</Typography>
         <Divider sx={{ mb: 3, }} />
         {purchaseCourses.length > 0 ? (
@@ -33,6 +36,7 @@ const MyCourses = () => {
           <Typography variant="body1">You have not purchased any courses yet.</Typography>
         )}
       </Box>
+    </Box>
   );
 }
 

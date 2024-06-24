@@ -1,6 +1,6 @@
 const data = [
   {
-    src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa_EipSRfPVNEeyj6Q16qE79vugIbrS7s3YA&s',
+    src: 'https://www.oxfordwebstudio.com/user/pages/06.da-li-znate/sta-je-html/sta-je-html.jpg',
     title: 'Learn HTML in one course for free',
     channel: 'Yous Academy',
     views: '396k views',
@@ -9,7 +9,7 @@ const data = [
     price: 200,
     url: "https://www.youtube.com/embed/qfPUMV9J5yw?si=9SW-9ABQogHOTwVy",
   }, {
-    src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT54tQftL5rbj7BQAUSBnYO395UlkMX0PRcvQ&s',
+    src: 'https://blog.twiintech.com/wp-content/uploads/2022/12/sta-je-css.jpg',
     title: 'Learn CSS in one course',
     channel: 'Yous Academy',
     views: '40k views',
@@ -58,3 +58,5 @@ const data = [
 ];
 
 export default data;
+
+
