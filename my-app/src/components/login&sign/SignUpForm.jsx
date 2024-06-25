@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { auth, usersCollectionRef } from '../../firebaseConfig';
-import { addDoc } from 'firebase/firestore';
+import { auth } from '../../firebaseConfig';
+// import { auth, usersCollectionRef } from '../../firebaseConfig';
+// import { addDoc } from 'firebase/firestore';
 import Navbar from '../shared/navbar/Navbar';
 
 const SignUpForm = () => {
@@ -17,10 +18,10 @@ const SignUpForm = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const emailPrefix = email.split('@')[0];
       localStorage.setItem('emailPrefix', emailPrefix);
-      await addDoc(usersCollectionRef, {
-        email: email,
-        uid: userCredential.user.uid
-      });
+      // await addDoc(usersCollectionRef, {
+      //   email: email,
+      //   uid: userCredential.user.uid
+      // });
       navigate('/');
     } catch (error) {
       setError(error.message);
@@ -36,10 +37,10 @@ const SignUpForm = () => {
       const email = user.email;
       const emailPrefix = email.split('@')[0];
       localStorage.setItem('emailPrefix', emailPrefix);
-      await addDoc(usersCollectionRef, {
-        email: email,
-        uid: user.uid
-      });
+      // await addDoc(usersCollectionRef, {
+      //   email: email,
+      //   uid: user.uid
+      // });
       navigate('/');
     } catch (error) {
       if (error.code === 'auth/popup-closed-by-user') {

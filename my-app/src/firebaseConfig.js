@@ -1,7 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
-import { getFirestore, collection } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyALx_WocuMofJHm777a_sAffWEEye4CPbg",
@@ -13,14 +11,7 @@ const firebaseConfig = {
     measurementId: "G-XMBEKLEJSQ"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 const auth = getAuth(app);
-const db = getFirestore(app);
 
-// Reference to the users collection
-const usersCollectionRef = collection(db, 'users');
-
-// Export instances
-export { app, auth, db, usersCollectionRef };
+export { app, auth };

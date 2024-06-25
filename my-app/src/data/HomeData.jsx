@@ -1,6 +1,13 @@
+import html from '../../public/images/html.webp';
+import css from '../../public/images/css.webp';
+import javascript from '../../public/images/javascript.webp';
+import react from '../../public/images/react.webp';
+import angular from '../../public/images/angular.webp';
+import vue from '../../public/images/vue.webp';
+
 const data = [
   {
-    src: 'https://www.oxfordwebstudio.com/user/pages/06.da-li-znate/sta-je-html/sta-je-html.jpg',
+    src: html,
     title: 'Learn HTML in one course for free',
     channel: 'Yous Academy',
     views: '396k views',
@@ -8,8 +15,9 @@ const data = [
     id: 123,
     price: 200,
     url: "https://www.youtube.com/embed/qfPUMV9J5yw?si=9SW-9ABQogHOTwVy",
-  }, {
-    src: 'https://blog.twiintech.com/wp-content/uploads/2022/12/sta-je-css.jpg',
+  },
+  {
+    src: css,
     title: 'Learn CSS in one course',
     channel: 'Yous Academy',
     views: '40k views',
@@ -17,8 +25,9 @@ const data = [
     id: 223,
     price: 300,
     url: "https://www.youtube.com/embed/qyVkLebgfzY?si=yIKcJhhzy5afJ3GZ",
-  }, {
-    src: 'https://www.macworld.com/wp-content/uploads/2023/01/learn_javascript_on_mac.jpg?quality=50&strip=all',
+  },
+  {
+    src: javascript,
     title: 'Learn JS in one course',
     channel: 'Yous Academy',
     views: '130k views',
@@ -26,8 +35,8 @@ const data = [
     id: 323,
     price: 600,
     url: "https://www.youtube.com/embed/gIGGhFlGgLI?si=2VJ7pOp91724JLXb",
-  }, {
-    src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCrrN5uAYF6jGsgtPSJAGBYPjsrQ4ADb5Xeg&s',
+  },{
+    src: react,
     title: 'Learn React in one course',
     channel: 'Yous Academy',
     views: '130k views',
@@ -36,7 +45,7 @@ const data = [
     price: 800,
     url: "https://www.youtube.com/embed/SqcY0GlETPk?si=GdfwK_gBRIgAbU_4",
   }, {
-    src: 'https://d585tldpucybw.cloudfront.net/sfimages/default-source/blogs/2023/2023-11/angular-logo-1200-628.png?sfvrsn=bf64b1ee_3',
+    src: angular,
     title: 'Learn Angular in one course',
     channel: 'Yous Academy',
     views: '130k views',
@@ -46,7 +55,7 @@ const data = [
     url: "https://www.youtube.com/embed/k5E2AVpwsko?si=rKr18aYQWNPFTzt2",
   },
   {
-    src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpfE8WGNRdD_70vw7LwEQHv9hGQftrqYXS7w&s',
+    src: vue,
     title: 'Learn Vue in one course',
     channel: 'Yous Academy',
     views: '130k views',
@@ -57,4 +66,4 @@ const data = [
   },
 ];
 
-export default data;
+export default data;;

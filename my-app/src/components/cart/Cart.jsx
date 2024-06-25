@@ -1,12 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../shared/navbar/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCourse, purchaseCourses, addMoney, removeCourse, buyCourse } from '../../Redux/slices';
+import { purchaseCourses, removeCourse, buyCourse } from '../../Redux/slices';
 import { Box, Typography, Button, Divider } from '@mui/material';
 import { Link } from 'react-router-dom';
 import data from '../../data/HomeData';
 import './Cart.css'
 import DeleteIcon from '@mui/icons-material/Delete';
+
 const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const Cart = () => {
   };
 
   const getImageUrlForId = (id) => {
-    const course = data.find(course => course.id === id);
+    const course = data.find(courses => courses.id === id);
     return course ? course.src : 'https://placeholder.com/placeholder.jpg'; // Replace with a default image URL if title not found
   };
 
@@ -43,7 +44,6 @@ const Cart = () => {
     <Box>
       <Navbar />
       <Box className='container'>
-        {/* <Box > */}
         <Typography variant="h4" className='textLarge'>Number of courses in your cart: {num}</Typography>
         <Typography variant="h4" className='textLarge'>Available balance: ${money}</Typography>
         <Divider sx={{ mt: 2, mb: 2 }} />

@@ -1,165 +1,161 @@
-/* styles.css */
-
-/* Reset some default styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*,
+body,
+ul {
+    padding: 0;
 }
 
-/* Global styles */
+.button,
+.navbar {
+    padding: 10px 20px;
+}
+
+.button,
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  background-color: #f0f0f0;
-  color: #333;
-  margin: 0 !important;
-  padding: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0 !important;
 }
 
 .container {
-  /* width: 80%;
-  margin: 0 auto;
-  padding: 20px; */
-  margin: 20px;
+    margin: 20px;
 }
 
-h1, h2, h3 {
-  margin-bottom: 10px;
+h1,
+h2,
+h3 {
+    margin-bottom: 10px;
 }
 
 p {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 ul {
-  list-style-type: none;
-  padding: 0;
+    list-style-type: none;
 }
 
-/* Navbar styles */
 .navbar {
-  background-color: #333;
-  color: #fff;
-  padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+}
+
+.button,
+.form button {
+    background-color: #007bff;
 }
 
 .navbar ul {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 .navbar li {
-  margin-right: 10px;
-}
-
-.navbar a {
-  color: #fff;
-  text-decoration: none;
+    margin-right: 10px;
 }
 
 .navbar a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
-/* Button styles */
 .button {
-  display: inline-block;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  text-decoration: none;
-  text-align: center;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    text-align: center;
 }
 
-.button:hover {
-  background-color: #0056b3;
+.button:hover,
+.form button:hover {
+    background-color: #0056b3;
 }
 
-/* Form styles */
 .form {
-  max-width: 400px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-.form input[type="text"],
 .form input[type="email"],
+.form input[type="text"],
 .form textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.custom-button,
+.form button {
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }
 
 .form button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.form button:hover {
-  background-color: #0056b3;
+    width: 100%;
+    padding: 10px;
 }
 
 .custom-button {
-  background-color: #3DC2EC;
-  color: #FFFFFF;
-  padding: 8px 16px;
-  margin: 5px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    background-color: #3dc2ec;
+    padding: 8px 16px;
+    margin: 5px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
     text-transform: uppercase;
 }
 
 .custom-button:hover {
-  background-color: #9c27b0;
-  /* Darker shade of the primary color on hover */
+    background-color: #9c27b0;
 }
 
-
 @media (max-width: 768px) {
-
-  .textLarge {
-    font-size: large !important;
-    font-size: bold;
-  }
-
-  .textSmall {
-    font-size: x-small !important;
-  }
-
-  .btn-small-text {
-    padding: 5px !important;
-    /* width: 100px; */
-    font-size: 8px !important;
-    margin: 5px !important;
-  }
-
-  .no {
-    display: none !important;
-  }
-
-  .container {
-    margin: 10px !important;
-  }
-    .imgCart {
-      width: 60px !important;
+    .textLarge {
+        font-size: large !important;
+        font-size: bold;
     }
+
+    .textSmall {
+        font-size: x-small !important;
+    }
+
+    .btn-small-text {
+        padding: 5px !important;
+        font-size: 8px !important;
+        margin: 5px !important;
+    }
+
+    .no {
+        display: none !important;
+    }
+
+    .container {
+        margin: 10px !important;
+    }
+
+    .imgCart {
+        width: 60px !important;
+    }
+
     .custom-button {
-      padding: 5px 10px;
-      font-size: 12px;
+        padding: 5px 10px;
+        font-size: 12px;
     }
 }
 

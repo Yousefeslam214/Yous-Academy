@@ -18,3 +18,15 @@
 .message:hover {
   display: none;
 }
+
+.img-section {
+  width: 330px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+@media (max-width:768px) {
+  .img-section {
+    width: 300px;
+      height: 175px;
+}}
+

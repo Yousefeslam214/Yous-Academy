@@ -1,25 +1,23 @@
 import { Box, Grid, Typography, Skeleton } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCourse } from '../../Redux/slices';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Navbar from '../shared/navbar/Navbar';
 import data from '../../data/HomeData';
 import "./Home.css";
 
-const Home = (props) => {
-    const { loading = false } = props;
+const Home = () => {
+    const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
     const courses = useSelector(state => state.courses.purchasedCourses);
-    // const courseExists = courses.some(course => course.name === courseName && course.price === coursePrice);
 
     const [message, setMessage] = useState('');
-    // const courses = useSelector(state => state.courses.courses);
 
-    const courseExistsonCourses = useSelector(state => state.courses.courses);
+    const existsonCourses = useSelector(state => state.courses.courses);
     const handleAddCourse = (courseName, courseId, coursePrice) => {
-        const courseExists = courseExistsonCourses.some(course => course.name === courseName);
+        const courseExists = existsonCourses.some(course => course.name === courseName);
 
         if (courseExists) {
             setMessage(`Course with name "${courseName}" already exists.`);
@@ -40,16 +38,18 @@ const Home = (props) => {
                         <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
                             <Box sx={{ p: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', height: '100%', background: '#F8F9FA ' }}>
                                 {item ? (
+                                    <>
                                     <img
-                                        style={{ width: '100%', height: 'auto', marginBottom: '10px' }}
+                                        // style={{ width: '100%', height: 'auto', marginBottom: '10px' }}
                                         alt={item.title}
                                         src={item.src}
-                                        loading={item.title === "Learn CSS in one course" ? "eager" : "lazy"}
+                                        // loading={item.title === "Learn CSS in one course" ? "eager" : "lazy"}
                                         width="400"
                                         srcSet={`${item.title} 400w, ${item.title} 800w`}
-
+                                        className='img-section'
                                         height="300"
                                     />
+                                    </>
                                 ) : (
                                     <Skeleton variant="rectangular" width="100%" height="118px" />
                                 )}
@@ -70,7 +70,7 @@ const Home = (props) => {
                                 )}
                                 {/* Custom styled button */}
                                 {courses.some(course => course.name === item.title) ? (
-                                    <Link to={`/video/${item.id}`} style={{ textDecoration: 'none' }}>
+                                    <Link to={`/video/${item.id}`} style={{ textDecoration: 'none' , padding:'5px'}}>
                                         <button className="custom-button">Open Course</button>
                                     </Link>
                                 ) : (

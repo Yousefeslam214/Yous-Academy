@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, TextField, Button, Divider, Typography, InputAdornment } from '@mui/material';
-import cards from '../../assets/cards.png';
+import cards from '../../../public/images/cards.webp';
 import Navbar from '../shared/navbar/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { addMoney } from '../../Redux/slices';
